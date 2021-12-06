@@ -1,15 +1,23 @@
 <template>
-    <div>
-        <h1>bavava</h1>
-    </div>
+  <div>
+    <card/>
+  </div>
 </template>
 
 <script>
-    export default {
-        
-    }
-</script>
+import Card from '../components/card.vue';
 
-<style lang="scss" scoped>
+export default {
+  data() {
+    return {
+      usuarios: [],
+    };
+  },
 
+  components: {Card}
+};
+
+    Card</script>
+
+<style  scoped>
 </style>

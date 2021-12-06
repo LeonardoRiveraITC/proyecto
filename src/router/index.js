@@ -15,7 +15,7 @@ const routes = [
     path:'/mascotas/',
     name:'mascotas',
     component: Mascotas
-  }  
+  }, 
 ]
 
 const router = new VueRouter({

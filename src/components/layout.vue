@@ -12,7 +12,7 @@
           dark
           shrink-on-scroll
           prominent
-          src="https://dam.ngenespanol.com/wp-content/uploads/2019/10/aninmales-dia-mundial.jpg"
+          src="https://www.cinemascomics.com/wp-content/uploads/2020/08/volver-al-cine.jpg"
           fade-img-on-scroll
           scroll-target="#scrolling-techniques-5"
           scroll-threshold="500"
@@ -28,7 +28,7 @@
             @click.stop="drawer = !drawer"
           ></v-app-bar-nav-icon>
 
-          Veterinaria
+          Cinepolis
         </v-app-bar>
       </v-card>
       <v-navigation-drawer v-model="drawer" absolute temporary>

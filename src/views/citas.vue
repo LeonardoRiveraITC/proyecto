@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Asasas</h1>
+        <h1>Citas</h1>
     </div>
 </template>
 
