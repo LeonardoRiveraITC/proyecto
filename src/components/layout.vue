@@ -32,17 +32,6 @@
         </v-app-bar>
       </v-card>
       <v-navigation-drawer v-model="drawer" absolute temporary>
-        <v-list-item>
-          <v-list-item-avatar>
-            <v-img src="https://randomuser.me/api/portraits/men/78.jpg"></v-img>
-          </v-list-item-avatar>
-
-          <v-list-item-content>
-            <v-list-item-title>John Leider</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-divider></v-divider>
 
         <v-list>
           <v-list-item
@@ -61,18 +50,6 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-        <v-divider></v-divider>
-        <v-list>
-          <v-list-item>
-            <v-list-item-icon>
-              <v-icon>mdi-exit-to-app</v-icon>
-            </v-list-item-icon>
-
-            <v-list-item-content>
-              <v-list-item-title>Cerrar sesión</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
       </v-navigation-drawer>
     </div>
   </div>
@@ -83,8 +60,21 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Citas", icon: "mdi-calendar", link: "citas" },
-        { title: "Mascotas", icon: "mdi-dog-side", link: "mascotas" },
+        { title: "Actores", icon: "mdi-account-star", link: "actores" },
+        { title: "Personajes", icon: "mdi-account-cowboy-hat", link: "personajes" },
+        { title: "Pelicula", icon: "mdi-movie", link: "pelicula" },
+        { title: "Director", icon: "mdi-bullhorn-variant", link: "director" },
+        { title: "Productora", icon: "mdi-account-tie-outline", link: "prodcutora" },        
+        { title: "Pais", icon: "mdi-earth", link: "pais" },
+        { title: "Funcion", icon: "mdi-projector", link: "funcion" },
+        { title: "Sala", icon: "mdi-door", link: "sala" },
+        { title: "Cine", icon: "mdi-office-building-outline", link: "cine" },
+        { title: "Horario", icon: "mdi-calendar-clock", link: "horario" },
+        { title: "Programacion", icon: "mdi-calendar", link: "programacion" },
+
+
+
+
       ],
       routerlink: "home",
     };
