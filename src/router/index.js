@@ -1,21 +1,40 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Citas from '../views/citas.vue'
-import Mascotas from '../views/mascotas.vue'
+import Pelicula from '../views/pelicula.vue'
+import Actor from '../views/actor.vue'
+import Boleto from '../views/boletos.vue'
+import Horario from '../views/horario.vue'
+import Funcion from '../views/funcion.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path:'/citas/',
-    name:'citas',
-    component: Citas
+    path:'/pelicula/',
+    name:'pelicula',
+    component: Pelicula
   },
   {
-    path:'/mascotas/',
-    name:'mascotas',
-    component: Mascotas
-  }, 
+    path:'/actor/',
+    name:'actor',
+    component: Actor
+  },  
+  {
+    path:'/boleto/',
+    name:'boleto',
+    component: Boleto
+  },    
+  {
+    path:'/horario/',
+    name:'horario',
+    component: Horario
+  },  
+  {
+    path:'/funcion/',
+    name:'funcion',
+    component: Funcion
+  },      
+  
 ]
 
 const router = new VueRouter({

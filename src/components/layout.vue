@@ -28,7 +28,7 @@
             @click.stop="drawer = !drawer"
           ></v-app-bar-nav-icon>
 
-          Cinepolis
+          Gestión de Cines 
         </v-app-bar>
       </v-card>
       <v-navigation-drawer v-model="drawer" absolute temporary>
@@ -60,19 +60,17 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Actores", icon: "mdi-account-star", link: "actores" },
-        { title: "Personajes", icon: "mdi-account-cowboy-hat", link: "personajes" },
+        { title: "Actores", icon: "mdi-account-star", link: "actor" },
+        { title: "Personajes", icon: "mdi-account-cowboy-hat", link: "personaje" },
         { title: "Pelicula", icon: "mdi-movie", link: "pelicula" },
         { title: "Director", icon: "mdi-bullhorn-variant", link: "director" },
-        { title: "Productora", icon: "mdi-account-tie-outline", link: "prodcutora" },        
+        { title: "Productora", icon: "mdi-account-tie-outline", link: "prodcutor" },        
         { title: "Pais", icon: "mdi-earth", link: "pais" },
-        { title: "Funcion", icon: "mdi-projector", link: "funcion" },
+        { title: "Boletos", icon: "mdi-ticket", link: "boleto" },
         { title: "Sala", icon: "mdi-door", link: "sala" },
         { title: "Cine", icon: "mdi-office-building-outline", link: "cine" },
         { title: "Horario", icon: "mdi-calendar-clock", link: "horario" },
-        { title: "Programacion", icon: "mdi-calendar", link: "programacion" },
-
-
+        { title: "Funcion", icon: "mdi-projector", link: "funcion" },
 
 
       ],
