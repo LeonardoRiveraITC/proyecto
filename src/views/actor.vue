@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-
+    <h1 class=title>Actores</h1>
     <v-card
       v-for="actor in actores"
       :key="actor.id"
@@ -14,9 +14,9 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>{{ actor.nombre }}</p>
-          <p>{{ actor.nombrePel }}</p>
-          <p>{{ actor.descripcion }}</p>
+          <p>Nombre: {{ actor.nombre }}</p>
+          <p>Pelicula: {{ actor.nombrePel }}</p>
+          <p>Rol: {{ actor.descripcion }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -55,5 +55,9 @@ export default {
 .card {
   font-family: "Varela", sans-serif;
   padding: 0px;
+}
+.title{
+  padding-left:200px ;
+  
 }
 </style>

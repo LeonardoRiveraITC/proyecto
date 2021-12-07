@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-
+   <h1 class=title>Boletos</h1>
     <v-card
       v-for="boleto in boletos"
       :key="boleto.id"
@@ -14,14 +14,14 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>{{ boleto.asiento }}</p>
-          <p>{{ boleto.descripcion }}</p>
-          <p>{{ boleto.precio }}</p>
-          <p>{{ boleto.fecha }}</p>
-          <p>{{ boleto.horaInicio }}</p>
-          <p>{{ boleto.nombre }}</p>
-          <p>{{ boleto.clave }}</p>
-          <p>{{ boleto.nombreCine }}</p>
+          <p>Asiento: {{ boleto.asiento }}</p>
+          <p>Boleto: {{ boleto.descripcion }}</p>
+          <p>Precio: {{ boleto.precio }}</p>
+          <p>Fecha: {{ boleto.fecha }}</p>
+          <p>Hora de inicio: {{ boleto.horaInicio }}</p>
+          <p>Nombre: {{ boleto.nombre }}</p>
+          <p>Clave: {{ boleto.clave }}</p>
+          <p>Cine: {{ boleto.nombreCine }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -60,5 +60,9 @@ export default {
 .card {
   font-family: "Varela", sans-serif;
   padding: 0px;
+}
+.title{
+  padding-left:200px ;
+  
 }
 </style>

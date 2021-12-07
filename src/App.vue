@@ -20,6 +20,6 @@ import Layout from '@/components/layout.vue';
 }
 .content{
   padding-top:100px ;
-  padding-left:300px ;
+  padding-left:32% ;
 }
 </style>

@@ -14,7 +14,6 @@
           prominent
           src="https://www.cinemascomics.com/wp-content/uploads/2020/08/volver-al-cine.jpg"
           fade-img-on-scroll
-          scroll-target="#scrolling-techniques-5"
           scroll-threshold="500"
         >
           <template v-slot:img="{ props }">
@@ -61,14 +60,8 @@ export default {
       drawer: false,
       items: [
         { title: "Actores", icon: "mdi-account-star", link: "actor" },
-        { title: "Personajes", icon: "mdi-account-cowboy-hat", link: "personaje" },
         { title: "Pelicula", icon: "mdi-movie", link: "pelicula" },
-        { title: "Director", icon: "mdi-bullhorn-variant", link: "director" },
-        { title: "Productora", icon: "mdi-account-tie-outline", link: "prodcutor" },        
-        { title: "Pais", icon: "mdi-earth", link: "pais" },
         { title: "Boletos", icon: "mdi-ticket", link: "boleto" },
-        { title: "Sala", icon: "mdi-door", link: "sala" },
-        { title: "Cine", icon: "mdi-office-building-outline", link: "cine" },
         { title: "Horario", icon: "mdi-calendar-clock", link: "horario" },
         { title: "Funcion", icon: "mdi-projector", link: "funcion" },
 

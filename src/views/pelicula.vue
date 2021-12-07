@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-
+    <h1 class=title>Pelicula</h1>
     <v-card
       v-for="pelicula in peliculas"
       :key="pelicula.id"
@@ -14,12 +14,12 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>{{ pelicula.nombre }}</p>
-          <p>{{ pelicula.fechaEstreno }}</p>
-          <p>{{ pelicula.nombreProd }}</p>
-          <p>{{ pelicula.nombreDir }}</p>
-          <p>{{ pelicula.nombrePais }}</p>
-          <p>{{ pelicula.descripcion }}</p>
+          <p>Pelicula: {{ pelicula.nombre }}</p>
+          <p>Fecha de estreno: {{ pelicula.fechaEstreno }}</p>
+          <p>Productora: {{ pelicula.nombreProd }}</p>
+          <p>Dirección: {{ pelicula.nombreDir }}</p>
+          <p>Pais: {{ pelicula.nombrePais }}</p>
+          <p>Descripcion: {{ pelicula.descripcion }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -58,5 +58,9 @@ export default {
 .card {
   font-family: "Varela", sans-serif;
   padding: 0px;
+}
+.title{
+  padding-left:200px ;
+  
 }
 </style>

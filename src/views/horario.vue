@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-
+    <h1 class=title>Horario</h1>
     <v-card
       v-for="horario in horarios"
       :key="horario.id"
@@ -14,11 +14,10 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>{{ horario.asiento }}</p>
-          <p>{{ horario.direccion }}</p>
-          <p>{{ horario.primeraFuncion }}</p>
-          <p>{{ horario.ultimaFuncion }}</p>
-          <p>{{ horario.duracionPublicidad}}</p>
+          <p>Direccion: {{ horario.direccion }}</p>
+          <p>Primer funcion:{{ horario.primeraFuncion }}</p>
+          <p>Ultima funcion: {{ horario.ultimaFuncion }}</p>
+          <p>Duracion de la publicidad: {{ horario.duracionPublicidad}} minutos </p>
 
         </v-list-item-content>
       </v-list-item>
@@ -58,5 +57,9 @@ export default {
 .card {
   font-family: "Varela", sans-serif;
   padding: 0px;
+}
+.title{
+  padding-left:200px ;
+  
 }
 </style>
