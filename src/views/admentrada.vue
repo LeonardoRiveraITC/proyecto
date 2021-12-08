@@ -22,19 +22,113 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                  actor.numero, actor.asiento, actor.claveFuncion,actor.claveTipoEntrada
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
+           <v-dialog v-if="!dialog" max-width="600px" loading>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                 Agregar
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Agregar Actor</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Numero"
+                            required
+                            v-model="enteredData.numero"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Asiento"
+                            required
+                            v-model="enteredData.asiento"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Funcion"
+                            v-model="enteredData.claveFuncion"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Clave de tipo de entrada"
+                            required
+                            v-model="enteredData.claveTipoEntrada"
+                          ></v-text-field>
+                          </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="onSubmit">
+                    Actualizar
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+           <v-dialog v-if="!dialog" max-width="600px" loading>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                  Editar
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Editar actor a partir de clave</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            required
+                            v-model="enteredData.numero"
+                            disabled
+                          >}</v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Nombre"
+                            required
+                            v-model="enteredData.asiento"
+                            hint="Formato YYYY-MM-DD"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Edad"
+                            v-model="enteredData.claveFuncion"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Sexo"
+                            required
+                            v-model="enteredData.claveTipoEntrada"
+                          ></v-text-field>
+                          </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="onUpdate(actor.clave)">
+                    Actualizar
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           <v-btn
             class="btn-action"
             fab

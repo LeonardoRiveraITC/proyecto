@@ -44,22 +44,35 @@
                     <v-container>
                       <v-row>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field label="Funcion" required></v-text-field>
+                          <v-text-field
+                            label="Funcion"
+                            required
+                            v-model="enteredData.funcion"
+                          ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field label="Cine" required></v-text-field>
+                          <v-text-field
+                            label="Cine"
+                            required
+                            v-model="enteredData.cine"
+                          ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field label="Fecha"></v-text-field>
+                          <v-text-field
+                            label="Fecha"
+                            v-model="enteredData.fecha"
+                          ></v-text-field>
                         </v-col>
                         <v-col cols="12">
                           <v-text-field
                             label="Duracion"
                             required
+                            v-model="enteredData.duracion"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12">
                           <v-text-field
+                            v-model="enteredData.horaInicio"
                             label="Hora de inicio"
                             required
                             hint="Formato HH-MM-SS"
@@ -67,6 +80,7 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
+                            v-model="enteredData.fechaInicio"
                             label="Fecha de inicio"
                             required
                             hint="Formato YYYY-MM-DD"
@@ -74,22 +88,22 @@
                         </v-col>
                         <v-col cols="12" sm="6">
                           <v-text-field
+                            v-model="enteredData.fechaFin"
                             label="Fecha de fin"
                             required
                             hint="Formato YYYY-MM-DD"
                           ></v-text-field>
                         </v-col>
                         <v-col cols="12" sm="6">
-                          <v-text-field label="Clave" required></v-text-field>
+                          <v-text-field label="Clave" v-model="enteredData.clave" required></v-text-field>
                         </v-col>
                       </v-row>
                     </v-container>
                   </v-form>
-                  <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="blue darken-1" text @click="dialog = true">
+                  <v-btn color="blue darken-1" text @click="onSubmit">
                     Actualizar
                   </v-btn>
                 </v-card-actions>
@@ -171,6 +185,14 @@ import axios from "axios";
 export default {
   data() {
     return {
+      enteredData:{      funcion: "",
+      cine: "",
+      fecha: "",
+      duracion: "",
+      horaInicio: "",
+      fechaInicio: "",
+      fechaFin: "",
+      clave: ""},
       dialog: false,
       funciones: [],
       funcionesnp: [],
@@ -188,6 +210,27 @@ export default {
     });
   },
   methods: {
+    toFormData(obj) {
+      var form_data = new FormData()
+      for(var key in obj) {
+        form_data.append(key, obj[key])
+      }
+      return form_data
+    },   
+      onSubmit() {
+      var formData = this.toFormData(this.enteredData)
+      axios.post('funcionpost.php', formData)
+      .then( response => {
+        if (response.data.error) {
+          console.log('danger', response.data.message)
+        } else {
+          console.log('info', response.data.message)
+        }
+      })
+      .catch( error=> {
+        console.log.noteMsg('danger', error)
+      });
+    },
     hide: function () {
       // now we can use the reference to Choices to perform clean up here
       // prior to removing the elements from the DOM
@@ -236,6 +279,7 @@ export default {
         clave
       );
     },
+    updatesql: function () {},
   },
 };
 </script>
