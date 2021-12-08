@@ -14,9 +14,8 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>Nombre: {{ actor.nombre }}</p>
-          <p>Pelicula: {{ actor.nombrePel }}</p>
-          <p>Rol: {{ actor.descripcion }}</p>
+          <p>Clave: {{ actor.clave }}</p>
+          <p>Descripcion: {{ actor.descripcion }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -28,14 +27,8 @@
             color="cyan"
             @click="
               qupdate(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
+                actor.clave,
+                actor.descripcion
               )
             "
           >
@@ -48,14 +41,8 @@
             color="red"
             @click="
               qdelete(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
+                actor.clave,
+                actor.descripcion
               )
             "
           >
@@ -77,7 +64,7 @@ export default {
   },
   created() {
     // Creado aquí es equivalente a inicializar los datos de la página de inicio
-    axios.get("http://localhost:8000/actoresget.php").then((res) => {
+    axios.get("http://localhost:8000/admrol.php").then((res) => {
       this.actores = res.data; // Obtener datos
     });
   },

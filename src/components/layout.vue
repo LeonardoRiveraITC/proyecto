@@ -10,7 +10,6 @@
           absolute
           color="#43a047"
           dark
-          shrink-on-scroll
           prominent
           src="https://www.cinemascomics.com/wp-content/uploads/2020/08/volver-al-cine.jpg"
           fade-img-on-scroll
@@ -27,18 +26,16 @@
             @click.stop="drawer = !drawer"
           ></v-app-bar-nav-icon>
 
-          Gestión de Cines 
+          Gestión de Cines
         </v-app-bar>
       </v-card>
-      <v-navigation-drawer v-model="drawer" absolute temporary>
-
+      <v-navigation-drawer v-model="drawer" absolute temporary clipped fixed>
         <v-list>
           <v-list-item
             v-for="item in items"
             :key="item.title"
             :to="item.link"
             link
-            
           >
             <v-list-item-icon>
               <v-icon>{{ item.icon }}</v-icon>
@@ -48,6 +45,31 @@
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
+
+          <v-divider></v-divider>
+          <v-list-group
+            v-for="item in adminitems"
+            :key="item.title"
+            v-model="item.active"
+            :prepend-icon="item.action"
+          >
+            <template v-slot:activator>
+              <v-list-item-content>
+                <v-list-item-title v-text="item.title"></v-list-item-title>
+              </v-list-item-content>
+            </template>
+
+            <v-list-item
+              v-for="child in item.items"
+              :key="child.title"
+              :to="child.link"
+              link
+            >
+              <v-list-item-content>
+                <v-list-item-title v-text="child.title"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-group>
         </v-list>
       </v-navigation-drawer>
     </div>
@@ -64,15 +86,34 @@ export default {
         { title: "Boletos", icon: "mdi-ticket", link: "boleto" },
         { title: "Horario", icon: "mdi-calendar-clock", link: "horario" },
         { title: "Funcion", icon: "mdi-projector", link: "funcion" },
-
-
       ],
-      routerlink: "home",
+      adminitems: [
+        {
+          action: "mdi-admin",
+          items: [
+            { title: "Actor", link: "admactor" },
+            { title: "Cine", link: "cine" },
+            { title: "Director", link: "director" },
+            { title: "Entrada", link: "admentrada" },
+            { title: "funcion", link: "admfuncion" },
+            { title: "Genero", link: "admgenero" },
+            { title: "Horario", link: "admhorario" },
+            { title: "Pais", link: "admpais" },
+            { title: "Pelicula", link: "admpelicula" },
+            { title: "Personaje", link: "admpersonaje" },
+            { title: "Productora", link: "admproductora" },
+            { title: "Programacion", link: "admprogramacion" },
+            { title: "Reparto", link: "admreparto" },
+            { title: "Rol", link: "admrol" },
+            { title: "Sala", link: "admsala" },
+            { title: "Tipo entrada", link: "admentrada" },
+          ],
+          title: "Admin",
+        },
+      ],
     };
   },
-  methods: {
-
-  },
+  methods: {},
 };
 </script>
 
@@ -81,5 +122,4 @@ export default {
   font-family: "Varela", sans-serif;
   padding-bottom: 50px;
 }
-
 </style>

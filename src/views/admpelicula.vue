@@ -14,9 +14,14 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>Nombre: {{ actor.nombre }}</p>
-          <p>Pelicula: {{ actor.nombrePel }}</p>
-          <p>Rol: {{ actor.descripcion }}</p>
+          <p>Clave: {{ actor.clave }}</p>
+          <p>Primer funcion: {{ actor.nombre }}</p>
+          <p>Ultima funcion: {{ actor.fechaEstreno }}</p>
+          <p>Productora: {{ actor.claveProductora }}</p>
+          <p>Director: {{ actor.claveDirector }}</p>
+          <p>Pais: {{ actor.clavePais }}</p>
+          <p>Genero: {{ actor.claveGenero }}</p>
+
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -28,14 +33,13 @@
             color="cyan"
             @click="
               qupdate(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
+                actor.clave,
+                actor.nombre,
+                actor.fechaEstreno,
+                actor.claveProductora,
+                actor.claveDirector,
+                actor.clavePais,
+                actor.claveGenero,
               )
             "
           >
@@ -48,14 +52,13 @@
             color="red"
             @click="
               qdelete(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
+                actor.clave,
+                actor.nombre,
+                actor.fechaEstreno,
+                actor.claveProductora,
+                actor.claveDirector,
+                actor.clavePais,
+                actor.claveGenero,
               )
             "
           >
@@ -77,7 +80,7 @@ export default {
   },
   created() {
     // Creado aquí es equivalente a inicializar los datos de la página de inicio
-    axios.get("http://localhost:8000/actoresget.php").then((res) => {
+    axios.get("http://localhost:8000/admpelicula.php").then((res) => {
       this.actores = res.data; // Obtener datos
     });
   },

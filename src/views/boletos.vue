@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-   <h1 class=title>Boletos</h1>
+    <h1 class="title">Boletos</h1>
     <v-card
       v-for="boleto in boletos"
       :key="boleto.id"
@@ -26,10 +26,44 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn class="btn-action" fab x-small color="cyan">
+          <v-btn
+            class="btn-action"
+            fab
+            x-small
+            color="cyan"
+            @click="
+              qupdate(
+                boleto.asiento,
+                boleto.descripcion,
+                boleto.precio,
+                boleto.fecha,
+                boleto.horaInicio,
+                boleto.nombre,
+                boleto.clave,
+                boleto.nombreCine
+              )
+            "
+          >
             <v-icon dark> mdi-pencil </v-icon>
           </v-btn>
-          <v-btn class="btn-action" fab x-small color="red">
+          <v-btn
+            class="btn-action"
+            fab
+            x-small
+            color="red"
+            @click="
+              qdelete(
+                boleto.asiento,
+                boleto.descripcion,
+                boleto.precio,
+                boleto.fecha,
+                boleto.horaInicio,
+                boleto.nombre,
+                boleto.clave,
+                boleto.nombreCine
+              )
+            "
+          >
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
@@ -61,8 +95,7 @@ export default {
   font-family: "Varela", sans-serif;
   padding: 0px;
 }
-.title{
-  padding-left:200px ;
-  
+.title {
+  padding-left: 200px;
 }
 </style>

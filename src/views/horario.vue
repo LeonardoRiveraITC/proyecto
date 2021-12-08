@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-    <h1 class=title>Horario</h1>
+    <h1 class="title">Horario</h1>
     <v-card
       v-for="horario in horarios"
       :key="horario.id"
@@ -17,16 +17,41 @@
           <p>Direccion: {{ horario.direccion }}</p>
           <p>Primer funcion:{{ horario.primeraFuncion }}</p>
           <p>Ultima funcion: {{ horario.ultimaFuncion }}</p>
-          <p>Duracion de la publicidad: {{ horario.duracionPublicidad}} minutos </p>
-
+          <p>
+            Duracion de la publicidad: {{ horario.duracionPublicidad }} minutos
+          </p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn class="btn-action" fab x-small color="cyan">
+          <v-btn
+            class="btn-action"
+            fab
+            x-small
+            color="cyan"
+            @click="
+              qupdate(
+                horario.direccion,
+                horario.ultimaFuncion,
+                horario.duracionPublicidad
+              )
+            "
+          >
             <v-icon dark> mdi-pencil </v-icon>
           </v-btn>
-          <v-btn class="btn-action" fab x-small color="red">
+          <v-btn
+            class="btn-action"
+            fab
+            x-small
+            color="red"
+            @click="
+              qdelete(
+                horario.direccion,
+                horario.ultimaFuncion,
+                horario.duracionPublicidad
+              )
+            "
+          >
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
@@ -58,8 +83,7 @@ export default {
   font-family: "Varela", sans-serif;
   padding: 0px;
 }
-.title{
-  padding-left:200px ;
-  
+.title {
+  padding-left: 200px;
 }
 </style>
