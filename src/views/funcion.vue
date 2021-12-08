@@ -1,11 +1,12 @@
 <template>
-  <div class="card">
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Varela"
-    />
-    <h1 class="title">Funcion</h1>
-    <v-app>
+  <v-app>
+    <div class="card">
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Varela"
+      />
+      <h1 class="title">Funcion</h1>
+
       <v-switch v-model="toggle" label="Programado" color="green"></v-switch>
       <div v-show="toggle">
         <v-card
@@ -28,26 +29,72 @@
             </v-list-item-content>
           </v-list-item>
           <v-card-actions>
-            <v-btn
-              class="btn-action"
-              fab
-              x-small
-              color="cyan"
-              @click="
-                qupdate(
-                  funcion.nombre,
-                  funcion.nombreCine,
-                  funcion.fecha,
-                  funcion.duracion,
-                  funcion.horaInicio,
-                  funcion.fechaInicio,
-                  funcion.fechaFin,
-                  funcion.clave
-                )
-              "
-            >
-              <v-icon dark> mdi-pencil </v-icon>
-            </v-btn>
+            <v-dialog v-if="!dialog" max-width="600px" loading>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                  Editar
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Actualizar funcion</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field label="Funcion" required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field label="Cine" required></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field label="Fecha"></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Duracion"
+                            required
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-text-field
+                            label="Hora de inicio"
+                            required
+                            hint="Formato HH-MM-SS"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            label="Fecha de inicio"
+                            required
+                            hint="Formato YYYY-MM-DD"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            label="Fecha de fin"
+                            required
+                            hint="Formato YYYY-MM-DD"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field label="Clave" required></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                  <small>*indicates required field</small>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="dialog = true">
+                    Actualizar
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-btn
               class="btn-action"
               fab
@@ -96,26 +143,6 @@
               class="btn-action"
               fab
               x-small
-              color="cyan"
-              @click="
-                qupdate(
-                  funcion.nombre,
-                  funcion.nombreCine,
-                  funcion.fecha,
-                  funcion.duracion,
-                  funcion.horaInicio,
-                  funcion.fechaInicio,
-                  funcion.fechaFin,
-                  funcion.clave
-                )
-              "
-            >
-              <v-icon dark> mdi-pencil </v-icon>
-            </v-btn>
-            <v-btn
-              class="btn-action"
-              fab
-              x-small
               color="red"
               @click="
                 qdelete(
@@ -135,8 +162,8 @@
           </v-card-actions>
         </v-card>
       </div>
-    </v-app>
-  </div>
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -144,6 +171,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      dialog: false,
       funciones: [],
       funcionesnp: [],
       toggle: true,
@@ -160,6 +188,12 @@ export default {
     });
   },
   methods: {
+    hide: function () {
+      // now we can use the reference to Choices to perform clean up here
+      // prior to removing the elements from the DOM
+      this.dialog.destroy();
+      this.dialog = false;
+    },
     qupdate: function (
       nombre,
       nombreCine,

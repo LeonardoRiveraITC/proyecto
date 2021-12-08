@@ -1,13 +1,12 @@
 <template>
-  <div>
     <div class="layout">
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Varela"
       />
-      <v-card class="overflow-hidden">
+      <v-card >
         <v-app-bar
-          absolute
+          fixed
           color="#43a047"
           dark
           prominent
@@ -73,12 +72,12 @@
         </v-list>
       </v-navigation-drawer>
     </div>
-  </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      render:true,
       drawer: false,
       items: [
         { title: "Actores", icon: "mdi-account-star", link: "actor" },
@@ -93,7 +92,7 @@ export default {
           items: [
             { title: "Actor", link: "admactor" },
             { title: "Cine", link: "cine" },
-            { title: "Director", link: "director" },
+            { title: "Director", link: "admdirector" },
             { title: "Entrada", link: "admentrada" },
             { title: "funcion", link: "admfuncion" },
             { title: "Genero", link: "admgenero" },
