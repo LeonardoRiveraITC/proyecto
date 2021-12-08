@@ -9,7 +9,7 @@
       v-for="actor in actores"
       :key="actor.id"
       max-width="550"
-      max-height="200"
+      max-height="100"
       outlined
     >
       <v-list-item>
@@ -21,46 +21,6 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="red"
-            @click="
-              qdelete(
-                funcion.nombre,
-                funcion.nombreCine,
-                funcion.fecha,
-                funcion.duracion,
-                funcion.horaInicio,
-                funcion.fechaInicio,
-                funcion.fechaFin,
-                funcion.clave
-              )
-            "
-          >
-            <v-icon dark> mdi-delete </v-icon>
-          </v-btn>
         </v-card-actions>
       </v-app>
     </v-card>

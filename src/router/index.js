@@ -75,7 +75,7 @@ const routes = [
     component: AdmPelicula
   },
   {
-    path:'/admcine/',
+    path:'/cine/',
     name:'admcine',
     component: AdmCine
   },
@@ -83,11 +83,6 @@ const routes = [
     path:'/admdirector/',
     name:'admdirector',
     component: AdmDirector
-  },
-  {
-    path:'/admentrada/',
-    name:'admentrada',
-    component: AdmEntrada
   },
   {
     path:'/admgenero/',

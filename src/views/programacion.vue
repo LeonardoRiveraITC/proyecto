@@ -17,40 +17,133 @@
           <p>Clave: {{ actor.clave }}</p>
           <p>Fecha inicio: {{ actor.fechaInicio }}</p>
           <p>Fecha fin: {{ actor.fechaFin }}</p>
-          <p>Clave cine: {{ actor.claveCine}}</p>
+          <p>Clave cine: {{ actor.claveCine }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                actor.clave,
-                actor.fechaInicio,
-                actor.fechaFin,
-                actor.claveCine,
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
+          <v-dialog v-if="!dialog" max-width="600px" loading>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                Agregar
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Agregar programacion</span>
+              </v-card-title>
+              <v-card-text>
+                <v-form>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          label="Clave"
+                          required
+                          v-model="enteredData.clave"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          label="Fecha de Inicio"
+                          required
+                          v-model="enteredData.fechaInicio"
+                          hint="Formato YYYY-MM-DD"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          label="Fecha Final"
+                          v-model="enteredData.fechaFin"
+                          hint="Formato YYYY-MM-DD"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          label="Clave del Cine"
+                          required
+                          v-model="enteredData.claveCine"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="onSubmit">
+                  Actualizar
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-dialog v-if="!dialog" max-width="600px" loading>
+            <template v-slot:activator="{ on, attrs }">
+              <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                Editar
+              </v-btn>
+            </template>
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Editar funcion a partir de clave</span>
+              </v-card-title>
+              <v-card-text>
+                <v-form>
+                  <v-container>
+                    <v-row>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          required
+                          v-model="enteredData.clave"
+                          disabled
+                          >}</v-text-field
+                        >
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          label="Fecha de Inicio"
+                          required
+                          v-model="enteredData.fechaInicio"
+                          hint="Formato YYYY-MM-DD"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          label="Fecha Final"
+                          v-model="enteredData.fechaFin"
+                          hint="Formato YYYY-MM-DD"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          label="Clave del Cine"
+                          required
+                          v-model="enteredData.claveCine"
+                        ></v-text-field>
+                      </v-col>
+                    </v-row>
+                  </v-container>
+                </v-form>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="onUpdate(actor.clave)"
+                >
+                  Actualizar
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
           <v-btn
             class="btn-action"
             fab
             x-small
             color="red"
-            @click="
-              qdelete(
-                actor.clave,
-                actor.fechaInicio,
-                actor.fechaFin,
-                actor.claveCine,
-              )
-            "
+            @click="onDelete(actor.clave)"
           >
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
@@ -66,6 +159,13 @@ export default {
   data() {
     return {
       actores: [],
+      show: "",
+      enteredData: {
+        clave: "",
+        fechaInicio: "",
+        fechaFin: "",
+        claveCine: "",
+      },
     };
   },
   created() {
@@ -74,7 +174,64 @@ export default {
       this.actores = res.data; // Obtener datos
     });
   },
-  components: {},
+  methods: {
+    toFormData(obj) {
+      var form_data = new FormData();
+      for (var key in obj) {
+        form_data.append(key, obj[key]);
+      }
+      return form_data;
+    },
+    onSubmit() {
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/programacionpost.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onUpdate(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/programacionUpdate.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onDelete(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/programacionDelete.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+  },
 };
 </script>
 

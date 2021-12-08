@@ -23,44 +23,6 @@
         </v-list-item-content>
       </v-list-item>
       <v-app>
-        <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                pelicula.nombre,
-                pelicula.fechaEstreno,
-                pelicula.nombreProd,
-                pelicula.nombreDir,
-                pelicula.nombrePais,
-                pelicula.descripcion
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="red"
-            @click="
-              qdelete(
-                pelicula.nombre,
-                pelicula.fechaEstreno,
-                pelicula.nombreProd,
-                pelicula.nombreDir,
-                pelicula.nombrePais,
-                pelicula.descripcion
-              )
-            "
-          >
-            <v-icon dark> mdi-delete </v-icon>
-          </v-btn>
-        </v-card-actions>
       </v-app>
     </v-card>
   </div>

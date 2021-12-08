@@ -22,38 +22,6 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                actor.numero,
-                actor.asiento,
-                actor.claveFuncion,
-                actor.claveTipoEntrada,
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="red"
-            @click="
-              qdelete(
-                actor.numero,
-                actor.asiento,
-                actor.claveFuncion,
-                actor.claveTipoEntrada,
-              )
-            "
-          >
-            <v-icon dark> mdi-delete </v-icon>
-          </v-btn>
         </v-card-actions>
       </v-app>
     </v-card>

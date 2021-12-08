@@ -30,7 +30,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Agregar Actor</span>
+                <span class="text-h5">Agregar funcion</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -45,22 +45,47 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Nombre"
+                          label="Fecha"
                           required
-                          v-model="enteredData.nombre"
+                          v-model="enteredData.fecha"
+                          hint="Formato YYYY-MM-DD"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Edad"
-                          v-model="enteredData.edad"
+                          label="Duracion"
+                          v-model="enteredData.duracion"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          label="Sexo"
+                          label="Hora inicio"
                           required
-                          v-model="enteredData.sexo"
+                          v-model="enteredData.horaInicio"
+                          hint="Formato HH-MM-SS"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="enteredData.clavePelicula"
+                          label="Clave Pelicula"
+                          required
+                          hint="Formato HH-MM-SS"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="enteredData.claveProgramacion"
+                          label="clave Programacion"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="enteredData.claveSala"
+                          label="Clave Sala"
+                          required
+                          hint="Formato YYYY-MM-DD"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -83,7 +108,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Editar actor a partir de clave</span>
+                <span class="text-h5">Editar funcion a partir de clave</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -99,23 +124,47 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Nombre"
+                          label="Fecha"
                           required
-                          v-model="enteredData.nombre"
+                          v-model="enteredData.fecha"
                           hint="Formato YYYY-MM-DD"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Edad"
-                          v-model="enteredData.edad"
+                          label="Duracion"
+                          v-model="enteredData.duracion"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          label="Sexo"
+                          label="Hora inicio"
                           required
-                          v-model="enteredData.sexo"
+                          v-model="enteredData.horaInicio"
+                          hint="Formato HH-MM-SS"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-text-field
+                          v-model="enteredData.clavePelicula"
+                          label="Clave Pelicula"
+                          required
+                          hint="Formato HH-MM-SS"
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="enteredData.claveProgramacion"
+                          label="clave Programacion"
+                          required
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                        <v-text-field
+                          v-model="enteredData.claveSala"
+                          label="Clave Sala"
+                          required
+                          hint="Formato YYYY-MM-DD"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -139,7 +188,7 @@
             fab
             x-small
             color="red"
-            @click="qdelete(actor.clave, actor.edad, actor.nombre, actor.sexo)"
+            @click="onDelete(actor.clave)"
           >
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
@@ -197,7 +246,24 @@ export default {
       this.enteredData.clave = clave;
       var formData = this.toFormData(this.enteredData);
       axios
-        .post("http://localhost:8000/funcionupdate.php", formData)
+        .post("http://localhost:8000/actorupdate.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onDelete(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/actorDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
             console.log("danger", response.data.message);

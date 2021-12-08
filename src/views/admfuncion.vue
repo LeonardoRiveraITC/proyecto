@@ -186,17 +186,7 @@
             fab
             x-small
             color="red"
-            @click="
-              qdelete(
-                actor.clave,
-                actor.fecha,
-                actor.duracion,
-                actor.horaInicio,
-                actor.clavePelicula,
-                actor.claveProgramacion,
-                actor.claveSala
-              )
-            "
+            @click="onDelete(actor.clave)"
           >
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
@@ -269,7 +259,24 @@ export default {
         .catch((error) => {
           console.log.noteMsg("danger", error);
         });
-    },    
+    },
+    onDelete(clave) {
+      this.show=clave;
+      this.enteredData.clave=clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/funcionDelete.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },        
   },
 };
 </script>

@@ -16,41 +16,97 @@
         <v-list-item-content>
           <p>Clave: {{ actor.clave }}</p>
           <p>Nombre: {{ actor.nombre }}</p>
-          <p>Fecha estreno: {{ actor.fechaEstreno }}</p>
-          <p>Clave actor: {{ actor.claveActor}}</p>
-          <p>Clave rol: {{ actor.claveRol }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                actor.clave,
-                actor.fechaEstreno,
-                actor.claveActor,
-                actor.claveRol,
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
+<v-dialog v-if="!dialog" max-width="600px" loading>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                 Agregar
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Agregar productora</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Clave"
+                            required
+                            v-model="enteredData.clave"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Nombre"
+                            required
+                            v-model="enteredData.nombre"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="onSubmit">
+                    Actualizar
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+           <v-dialog v-if="!dialog" max-width="600px" loading>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn color="primary" dark v-bind="attrs" v-on="on">
+                  Editar
+                </v-btn>
+              </template>
+              <v-card>
+                <v-card-title>
+                  <span class="text-h5">Editar funcion a partir de clave</span>
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-container>
+                      <v-row>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            required
+                            v-model="enteredData.clave"
+                            disabled
+                          >}</v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6" md="4">
+                          <v-text-field
+                            label="Nombre"
+                            required
+                            v-model="enteredData.nombre"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
+                    </v-container>
+                  </v-form>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="onUpdate(actor.clave)">
+                    Actualizar
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
+
           <v-btn
             class="btn-action"
             fab
             x-small
             color="red"
-            @click="
-              qdelete(
-                actor.clave,
-                actor.fechaEstreno,
-                actor.claveActor,
-                actor.claveRol,
-              )
+            @click="onDelete(actor.clave)
             "
           >
             <v-icon dark> mdi-delete </v-icon>
@@ -67,6 +123,11 @@ export default {
   data() {
     return {
       actores: [],
+            show: "",
+      enteredData: {
+        clave: "",
+        nombre: "",
+      },
     };
   },
   created() {
@@ -75,7 +136,64 @@ export default {
       this.actores = res.data; // Obtener datos
     });
   },
-  components: {},
+  methods: {
+        toFormData(obj) {
+      var form_data = new FormData();
+      for (var key in obj) {
+        form_data.append(key, obj[key]);
+      }
+      return form_data;
+    },
+    onSubmit() {
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/productorapost.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onUpdate(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/productoraUpdate.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onDelete(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/productoraDelete.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+  },
 };
 </script>
 

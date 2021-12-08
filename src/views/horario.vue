@@ -9,12 +9,12 @@
       v-for="horario in horarios"
       :key="horario.id"
       max-width="550"
-      max-height="300"
+      max-height="200"
       outlined
     >
       <v-list-item>
         <v-list-item-content>
-          <p>Direccion: {{ horario.direccion }}</p>
+          <p>Clave: {{ horario.clave }}</p>
           <p>Primer funcion:{{ horario.primeraFuncion }}</p>
           <p>Ultima funcion: {{ horario.ultimaFuncion }}</p>
           <p>
@@ -24,36 +24,7 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                horario.direccion,
-                horario.ultimaFuncion,
-                horario.duracionPublicidad
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="red"
-            @click="
-              qdelete(
-                horario.direccion,
-                horario.ultimaFuncion,
-                horario.duracionPublicidad
-              )
-            "
-          >
-            <v-icon dark> mdi-delete </v-icon>
-          </v-btn>
+
         </v-card-actions>
       </v-app>
     </v-card>
@@ -66,6 +37,13 @@ export default {
   data() {
     return {
       horarios: [],
+            show: "",
+      enteredData: {
+        clave: "",
+        primeraFuncion: "",
+        ultimaFuncion: "",
+        duracionPublicidad: "",
+      },
     };
   },
   created() {
@@ -74,7 +52,64 @@ export default {
       this.horarios = res.data; // Obtener datos
     });
   },
-  components: {},
+  methods: {
+        toFormData(obj) {
+      var form_data = new FormData();
+      for (var key in obj) {
+        form_data.append(key, obj[key]);
+      }
+      return form_data;
+    },
+    onSubmit() {
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/peliculapost.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onUpdate(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/peliculaUpdate.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+    onDelete(clave) {
+      this.show = clave;
+      this.enteredData.clave = clave;
+      var formData = this.toFormData(this.enteredData);
+      axios
+        .post("http://localhost:8000/peliculaDelete.php", formData)
+        .then((response) => {
+          if (response.data.error) {
+            console.log("danger", response.data.message);
+          } else {
+            console.log("info", response.data.message);
+          }
+        })
+        .catch((error) => {
+          console.log.noteMsg("danger", error);
+        });
+    },
+  },
 };
 </script>
 

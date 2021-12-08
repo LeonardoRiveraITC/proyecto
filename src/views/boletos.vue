@@ -26,46 +26,6 @@
       </v-list-item>
       <v-app>
         <v-card-actions>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="cyan"
-            @click="
-              qupdate(
-                boleto.asiento,
-                boleto.descripcion,
-                boleto.precio,
-                boleto.fecha,
-                boleto.horaInicio,
-                boleto.nombre,
-                boleto.clave,
-                boleto.nombreCine
-              )
-            "
-          >
-            <v-icon dark> mdi-pencil </v-icon>
-          </v-btn>
-          <v-btn
-            class="btn-action"
-            fab
-            x-small
-            color="red"
-            @click="
-              qdelete(
-                boleto.asiento,
-                boleto.descripcion,
-                boleto.precio,
-                boleto.fecha,
-                boleto.horaInicio,
-                boleto.nombre,
-                boleto.clave,
-                boleto.nombreCine
-              )
-            "
-          >
-            <v-icon dark> mdi-delete </v-icon>
-          </v-btn>
         </v-card-actions>
       </v-app>
     </v-card>

@@ -105,7 +105,6 @@ export default {
             { title: "Reparto", link: "admreparto" },
             { title: "Rol", link: "admrol" },
             { title: "Sala", link: "admsala" },
-            { title: "Tipo entrada", link: "admentrada" },
           ],
           title: "Admin",
         },
