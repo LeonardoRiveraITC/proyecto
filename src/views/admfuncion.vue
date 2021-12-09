@@ -181,7 +181,7 @@
 
 
                         <v-menu
-                          v-model="menu2"
+                          v-model="menu4"
                           :close-on-content-click="false"
                           :nudge-right="40"
                           transition="scale-transition"
@@ -200,7 +200,7 @@
                           </template>
                           <v-date-picker
                             v-model="enteredData.fecha"
-                            @input="menu2 = false"
+                            @input="menu4 = false"
                           ></v-date-picker>
                         </v-menu>
 
@@ -217,7 +217,7 @@
                       <v-col cols="12" sm="6" md="4">
                           <v-menu
                               ref="menu"
-                              v-model="menu3"
+                              v-model="menu5"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               :return-value.sync="time"
@@ -239,7 +239,7 @@
                               <v-time-picker
                                 format="24hr"
                                 use-seconds
-                                v-if="menu3"
+                                v-if="menu5"
                                 v-model="enteredData.horaInicio"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
@@ -307,6 +307,8 @@ export default {
     return {
       menu3: false,
       menu2: false,
+      menu4: false,
+      menu5: false,
       show: "",
       enteredData: {
         clave: "",

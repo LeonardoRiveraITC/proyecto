@@ -172,7 +172,7 @@
 
 
                         <v-menu
-                          v-model="menu2"
+                          v-model="menu4"
                           :close-on-content-click="false"
                           :nudge-right="40"
                           transition="scale-transition"
@@ -191,7 +191,7 @@
                           </template>
                           <v-date-picker
                             v-model="enteredData.fechaInicio"
-                            @input="menu2 = false"
+                            @input="menu4 = false"
                           ></v-date-picker>
                         </v-menu>
 
@@ -210,7 +210,7 @@
 
 
                         <v-menu
-                          v-model="menu3"
+                          v-model="menu5"
                           :close-on-content-click="false"
                           :nudge-right="40"
                           transition="scale-transition"
@@ -229,7 +229,7 @@
                           </template>
                           <v-date-picker
                             v-model="enteredData.fechaFin"
-                            @input="menu3 = false"
+                            @input="menu5 = false"
                           ></v-date-picker>
                         </v-menu>
 

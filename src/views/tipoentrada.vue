@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-    <h1 class="title">Rol</h1>
+    <h1 class="title">Tipo entrada</h1>
     <v-card
       v-for="actor in actores"
       :key="actor.id"

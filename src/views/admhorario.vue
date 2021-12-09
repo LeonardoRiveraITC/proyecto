@@ -47,7 +47,7 @@
                            <v-col cols="12" sm="6" md="4">
                           <v-menu
                               ref="menu"
-                              v-model="menu2"
+                              v-model="menu1"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               :return-value.sync="time"
@@ -69,7 +69,7 @@
                               <v-time-picker
                                 format="24hr"
                                 use-seconds
-                                v-if="menu2"
+                                v-if="menu1"
                                 v-model="enteredData.primeraFuncion"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
@@ -82,7 +82,7 @@
                      <v-col cols="12" sm="6" md="4">
                           <v-menu
                               ref="menu"
-                              v-model="menu3"
+                              v-model="menu2"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               :return-value.sync="time"
@@ -104,7 +104,7 @@
                               <v-time-picker
                                 format="24hr"
                                 use-seconds
-                                v-if="menu3"
+                                v-if="menu2"
                                 v-model="enteredData.ultimaFuncion"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
@@ -160,7 +160,7 @@
                            <v-col cols="12" sm="6" md="4">
                           <v-menu
                               ref="menu"
-                              v-model="menu2"
+                              v-model="menu3"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               :return-value.sync="time"
@@ -182,7 +182,7 @@
                               <v-time-picker
                                 format="24hr"
                                 use-seconds
-                                v-if="menu2"
+                                v-if="menu3"
                                 v-model="enteredData.primeraFuncion"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
@@ -195,7 +195,7 @@
                      <v-col cols="12" sm="6" md="4">
                           <v-menu
                               ref="menu"
-                              v-model="menu3"
+                              v-model="menu4"
                               :close-on-content-click="false"
                               :nudge-right="40"
                               :return-value.sync="time"
@@ -217,7 +217,7 @@
                               <v-time-picker
                                 format="24hr"
                                 use-seconds
-                                v-if="menu3"
+                                v-if="menu4"
                                 v-model="enteredData.ultimaFuncion"
                                 full-width
                                 @click:minute="$refs.menu.save(time)"
@@ -271,8 +271,10 @@ import axios from "axios";
 export default {
   data() {
     return {
-            menu3: false,
+      menu1: false,
       menu2: false,
+      menu3: false,
+      menu4: false,
       show: "",
       enteredData: {
         clave: "",
