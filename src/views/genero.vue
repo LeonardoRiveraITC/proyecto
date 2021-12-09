@@ -116,16 +116,21 @@
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
+                <notification :message="message" :snackbar="snackbar"/>  
       </v-app>
     </v-card>
   </div>
 </template>
 
 <script>
+import notification from '../components/notification.vue';
 import axios from "axios";
 export default {
+   components: { notification },
   data() {
     return {
+            snackbar: false,
+      message: "",
       show: "",
       enteredData: {
         clave: "",
@@ -154,13 +159,16 @@ export default {
         .post("http://localhost:8000/generopost.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
     onUpdate(clave) {
@@ -171,13 +179,16 @@ export default {
         .post("http://localhost:8000/generoUpdate.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
     onDelete(clave) {
@@ -188,13 +199,16 @@ export default {
         .post("http://localhost:8000/generoDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
   },

@@ -143,6 +143,7 @@
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
+                <notification :message="message" :snackbar="snackbar"/> 
       </v-app>
     </v-card>
   </div>
@@ -150,9 +151,13 @@
 
 <script>
 import axios from "axios";
+import notification from '../components/notification.vue';
 export default {
+    components: { notification },
   data() {
     return {
+            snackbar: false,
+      message: "",
       actores: [],
       show: "",
       enteredData: {
@@ -183,13 +188,16 @@ export default {
         .post("http://localhost:8000/personajepost.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
     onUpdate(clave) {
@@ -200,13 +208,16 @@ export default {
         .post("http://localhost:8000/personajeUpdate.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
         onDelete(clave) {
@@ -217,13 +228,16 @@ export default {
         .post("http://localhost:8000/personajeDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
   },

@@ -36,13 +36,6 @@
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Clave"
-                          required
-                          v-model="enteredData.clave"
-                        ></v-text-field>
-                      </v-col>
                        <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
@@ -82,13 +75,6 @@
                       </v-col> 
                       <!-- calendar fin  -->
                        <!-- calendar inicio  -->
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Clave"
-                          required
-                          v-model="enteredData.clave"
-                        ></v-text-field>
-                      </v-col>
                       <v-col cols="12" sm="6" md="4">
 
 
@@ -152,19 +138,12 @@
                 <v-form>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          required
-                          v-model="enteredData.clave"
-                          disabled
-                          >}</v-text-field
-                        >
-                      </v-col>
+
                        <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           label="Clave"
-                          required
+                          disabled
                           v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
@@ -199,13 +178,7 @@
                       </v-col> 
                       <!-- calendar fin  -->
                        <!-- calendar inicio  -->
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Clave"
-                          required
-                          v-model="enteredData.clave"
-                        ></v-text-field>
-                      </v-col>
+
                       <v-col cols="12" sm="6" md="4">
 
 
@@ -270,6 +243,7 @@
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
+                <notification :message="message" :snackbar="snackbar"/>  
       </v-app>
     </v-card>
   </div>
@@ -277,9 +251,13 @@
 
 <script>
 import axios from "axios";
+import notification from '../components/notification.vue';
 export default {
+    components: { notification },
   data() {
     return {
+            snackbar: false,
+      message: "",
       menu2:false,
       menu3:false,
       actores: [],
@@ -312,13 +290,16 @@ export default {
         .post("http://localhost:8000/programacionpost.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
     onUpdate(clave) {
@@ -329,13 +310,16 @@ export default {
         .post("http://localhost:8000/programacionUpdate.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
     onDelete(clave) {
@@ -346,13 +330,16 @@ export default {
         .post("http://localhost:8000/programacionDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar=true;
+            this.message=("Danger: "+ response.data.message.toString() );
           } else {
-            console.log("info", response.data.message);
+            this.snackbar=true;
+            this.message=("Info: "+ response.data.message.toString());
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar=true;
+          this.message=("Danger: "+ error.toString());
         });
     },
   },

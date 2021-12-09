@@ -44,77 +44,74 @@
                         ></v-text-field>
                       </v-col>
                       <!-- RELOJ  UNO -->
-                           <v-col cols="12" sm="6" md="4">
-                          <v-menu
-                              ref="menu"
-                              v-model="menu1"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              :return-value.sync="time"
-                              transition="scale-transition"
-                              offset-y
-                              max-width="290px"
-                              min-width="290px"
-                            >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                  v-model="enteredData.primeraFuncion"
-                                  label="Hora"
-                                  prepend-icon="mdi-clock-time-four-outline"
-                                  readonly
-                                  v-bind="attrs"
-                                  v-on="on"
-                                ></v-text-field>
-                              </template>
-                              <v-time-picker
-                                format="24hr"
-                                use-seconds
-                                v-if="menu1"
-                                v-model="enteredData.primeraFuncion"
-                                full-width
-                                @click:minute="$refs.menu.save(time)"
-                              ></v-time-picker>
-                            </v-menu>
-                        
+                      <v-col cols="12" sm="6" md="4">
+                        <v-menu
+                          ref="menu"
+                          v-model="menu1"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.primeraFuncion"
+                              label="Hora"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            use-seconds
+                            v-if="menu1"
+                            v-model="enteredData.primeraFuncion"
+                            full-width
+                            @click:minute="$refs.menu.save(time)"
+                          ></v-time-picker>
+                        </v-menu>
                       </v-col>
-                                          <!-- fin reloj uno  -->
-                              <!-- reloj dos  -->                                          
-                     <v-col cols="12" sm="6" md="4">
-                          <v-menu
-                              ref="menu"
-                              v-model="menu2"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              :return-value.sync="time"
-                              transition="scale-transition"
-                              offset-y
-                              max-width="290px"
-                              min-width="290px"
-                            >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                  v-model="enteredData.ultimaFuncion"
-                                  label="Hora"
-                                  prepend-icon="mdi-clock-time-four-outline"
-                                  readonly
-                                  v-bind="attrs"
-                                  v-on="on"
-                                ></v-text-field>
-                              </template>
-                              <v-time-picker
-                                format="24hr"
-                                use-seconds
-                                v-if="menu2"
-                                v-model="enteredData.ultimaFuncion"
-                                full-width
-                                @click:minute="$refs.menu.save(time)"
-                              ></v-time-picker>
-                            </v-menu>
+                      <!-- fin reloj uno  -->
+                      <!-- reloj dos  -->
+                      <v-col cols="12" sm="6" md="4">
+                        <v-menu
+                          ref="menu"
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.ultimaFuncion"
+                              label="Hora"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            use-seconds
+                            v-if="menu2"
+                            v-model="enteredData.ultimaFuncion"
+                            full-width
+                            @click:minute="$refs.menu.save(time)"
+                          ></v-time-picker>
+                        </v-menu>
+                      </v-col>
 
-                        
-                      </v-col>                
-
-                                          <!-- fin reloj dos  -->
+                      <!-- fin reloj dos  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           label="Duracion de Publicidad (Minutos)"
@@ -128,7 +125,11 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="onSubmit">
+                <v-btn
+                  color="blue darken-1"
+                  text
+                  @click="onSubmit(actor.clave)"
+                >
                   Actualizar
                 </v-btn>
               </v-card-actions>
@@ -157,77 +158,74 @@
                         >
                       </v-col>
                       <!-- RELOJ  UNO -->
-                           <v-col cols="12" sm="6" md="4">
-                          <v-menu
-                              ref="menu"
-                              v-model="menu3"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              :return-value.sync="time"
-                              transition="scale-transition"
-                              offset-y
-                              max-width="290px"
-                              min-width="290px"
-                            >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                  v-model="enteredData.primeraFuncion"
-                                  label="Hora"
-                                  prepend-icon="mdi-clock-time-four-outline"
-                                  readonly
-                                  v-bind="attrs"
-                                  v-on="on"
-                                ></v-text-field>
-                              </template>
-                              <v-time-picker
-                                format="24hr"
-                                use-seconds
-                                v-if="menu3"
-                                v-model="enteredData.primeraFuncion"
-                                full-width
-                                @click:minute="$refs.menu.save(time)"
-                              ></v-time-picker>
-                            </v-menu>
-                        
+                      <v-col cols="12" sm="6" md="4">
+                        <v-menu
+                          ref="menu"
+                          v-model="menu3"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.primeraFuncion"
+                              label="Hora"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            use-seconds
+                            v-if="menu3"
+                            v-model="enteredData.primeraFuncion"
+                            full-width
+                            @click:minute="$refs.menu.save(time)"
+                          ></v-time-picker>
+                        </v-menu>
                       </v-col>
-                                          <!-- fin reloj uno  -->
-                              <!-- reloj dos  -->                                          
-                     <v-col cols="12" sm="6" md="4">
-                          <v-menu
-                              ref="menu"
-                              v-model="menu4"
-                              :close-on-content-click="false"
-                              :nudge-right="40"
-                              :return-value.sync="time"
-                              transition="scale-transition"
-                              offset-y
-                              max-width="290px"
-                              min-width="290px"
-                            >
-                              <template v-slot:activator="{ on, attrs }">
-                                <v-text-field
-                                  v-model="enteredData.ultimaFuncion"
-                                  label="Hora"
-                                  prepend-icon="mdi-clock-time-four-outline"
-                                  readonly
-                                  v-bind="attrs"
-                                  v-on="on"
-                                ></v-text-field>
-                              </template>
-                              <v-time-picker
-                                format="24hr"
-                                use-seconds
-                                v-if="menu4"
-                                v-model="enteredData.ultimaFuncion"
-                                full-width
-                                @click:minute="$refs.menu.save(time)"
-                              ></v-time-picker>
-                            </v-menu>
+                      <!-- fin reloj uno  -->
+                      <!-- reloj dos  -->
+                      <v-col cols="12" sm="6" md="4">
+                        <v-menu
+                          ref="menu"
+                          v-model="menu4"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          :return-value.sync="time"
+                          transition="scale-transition"
+                          offset-y
+                          max-width="290px"
+                          min-width="290px"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.ultimaFuncion"
+                              label="Hora"
+                              prepend-icon="mdi-clock-time-four-outline"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-time-picker
+                            format="24hr"
+                            use-seconds
+                            v-if="menu4"
+                            v-model="enteredData.ultimaFuncion"
+                            full-width
+                            @click:minute="$refs.menu.save(time)"
+                          ></v-time-picker>
+                        </v-menu>
+                      </v-col>
 
-                        
-                      </v-col>                
-
-                                          <!-- fin reloj dos  -->
+                      <!-- fin reloj dos  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           label="Duracion de Publicidad (Minutos)"
@@ -261,16 +259,21 @@
             <v-icon dark> mdi-delete </v-icon>
           </v-btn>
         </v-card-actions>
+        <notification :message="message" :snackbar="snackbar" />
       </v-app>
     </v-card>
   </div>
 </template>
 
 <script>
+import notification from "../components/notification.vue";
 import axios from "axios";
 export default {
+        components: { notification },
   data() {
     return {
+      snackbar: false,
+      message: "",
       menu1: false,
       menu2: false,
       menu3: false,
@@ -305,13 +308,16 @@ export default {
         .post("http://localhost:8000/horariopost.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar = true;
+            this.message = "Danger: " + response.data.message.toString();
           } else {
-            console.log("info", response.data.message);
+            this.snackbar = true;
+            this.message = "Info: " + response.data.message.toString();
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar = true;
+          this.message = "Danger: " + error.toString();
         });
     },
     onUpdate(clave) {
@@ -322,13 +328,16 @@ export default {
         .post("http://localhost:8000/horarioUpdate.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar = true;
+            this.message = "Danger: " + response.data.message.toString();
           } else {
-            console.log("info", response.data.message);
+            this.snackbar = true;
+            this.message = "Info: " + response.data.message.toString();
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar = true;
+          this.message = "Danger: " + error.toString();
         });
     },
     onDelete(clave) {
@@ -339,13 +348,16 @@ export default {
         .post("http://localhost:8000/horarioDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
-            console.log("danger", response.data.message);
+            this.snackbar = true;
+            this.message = "Danger: " + response.data.message.toString();
           } else {
-            console.log("info", response.data.message);
+            this.snackbar = true;
+            this.message = "Info: " + response.data.message.toString();
           }
         })
         .catch((error) => {
-          console.log.noteMsg("danger", error);
+          this.snackbar = true;
+          this.message = "Danger: " + error.toString();
         });
     },
   },
