@@ -14,7 +14,8 @@
     >
       <v-list-item>
         <v-list-item-content>
-          <p>Clave: {{ horario.clave }}</p>
+          <p>Clave: {{ horario.nombre }}</p>
+          <p>Direccion: {{ horario.direccion }}</p>
           <p>Primer funcion:{{ horario.primeraFuncion }}</p>
           <p>Ultima funcion: {{ horario.ultimaFuncion }}</p>
           <p>
