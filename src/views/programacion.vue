@@ -43,21 +43,82 @@
                           v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
+                       <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha de Inicio"
+                          label="Clave"
                           required
-                          v-model="enteredData.fechaInicio"
-                          hint="Formato YYYY-MM-DD"
+                          v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
+
+
+                        <v-menu
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaInicio"
+                              label="Fecha de inicio"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaInicio"
+                            @input="menu2 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                      <!-- calendar fin  -->
+                       <!-- calendar inicio  -->
+                      <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha Final"
-                          v-model="enteredData.fechaFin"
-                          hint="Formato YYYY-MM-DD"
+                          label="Clave"
+                          required
+                          v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
+                      <v-col cols="12" sm="6" md="4">
+
+
+                        <v-menu
+                          v-model="menu3"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaFin"
+                              label="Fecha de fin"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaFin"
+                            @input="menu3 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                      <!-- calendar fin  -->
                       <v-col cols="12">
                         <v-text-field
                           label="Clave del Cine"
@@ -85,7 +146,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Editar funcion a partir de clave</span>
+                <span class="text-h5">Editar programacion a partir de clave</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -99,21 +160,82 @@
                           >}</v-text-field
                         >
                       </v-col>
+                       <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha de Inicio"
+                          label="Clave"
                           required
-                          v-model="enteredData.fechaInicio"
-                          hint="Formato YYYY-MM-DD"
+                          v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
+
+
+                        <v-menu
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaInicio"
+                              label="Fecha de inicio"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaInicio"
+                            @input="menu2 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                      <!-- calendar fin  -->
+                       <!-- calendar inicio  -->
+                      <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha Final"
-                          v-model="enteredData.fechaFin"
-                          hint="Formato YYYY-MM-DD"
+                          label="Clave"
+                          required
+                          v-model="enteredData.clave"
                         ></v-text-field>
                       </v-col>
+                      <v-col cols="12" sm="6" md="4">
+
+
+                        <v-menu
+                          v-model="menu3"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaFin"
+                              label="Fecha de fin"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaFin"
+                            @input="menu3 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                      <!-- calendar fin  -->
                       <v-col cols="12">
                         <v-text-field
                           label="Clave del Cine"
@@ -158,6 +280,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+      menu2:false,
+      menu3:false,
       actores: [],
       show: "",
       enteredData: {

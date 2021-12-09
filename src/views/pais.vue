@@ -68,7 +68,7 @@
               </template>
               <v-card>
                 <v-card-title>
-                  <span class="text-h5">Editar funcion a partir de clave</span>
+                  <span class="text-h5">Editar pais a partir de clave</span>
                 </v-card-title>
                 <v-card-text>
                   <v-form>

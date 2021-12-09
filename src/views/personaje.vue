@@ -102,7 +102,6 @@
                           label="Nombre"
                           required
                           v-model="enteredData.nombre"
-                          hint="Formato YYYY-MM-DD"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">

@@ -115,7 +115,6 @@
                           label="clave de tipo de entrada"
                           required
                           v-model="enteredData.claveTipoEntrada"
-                          hint="Formato HH-MM-SS"
                         ></v-text-field>
                       </v-col>
                     </v-row>

@@ -15,7 +15,7 @@
       <v-list-item>
         <v-list-item-content>
           <p>Nombre: {{ actor.nombre }}</p>
-          <p>Pelicula: {{ actor.nombrePel }}</p>
+          <p>Personaje: {{ actor.nombrePel }}</p>
           <p>Rol: {{ actor.descripcion }}</p>
         </v-list-item-content>
       </v-list-item>

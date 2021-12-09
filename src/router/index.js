@@ -20,10 +20,16 @@ import AdmProgramacion from '../views/programacion.vue'
 import AdmReparto from '../views/reparto.vue'
 import AdmRol from '../views/rol.vue'
 import AdmSala from '../views/sala.vue'
+import TipoEntrada from '../views/tipoentrada.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:'/tipoentrada/',
+    name:'tipoentrada',
+    component: TipoEntrada
+  },
   {
     path:'/pelicula/',
     name:'pelicula',

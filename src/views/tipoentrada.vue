@@ -4,7 +4,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Varela"
     />
-    <h1 class="title">Sala</h1>
+    <h1 class="title">Rol</h1>
     <v-card
       v-for="actor in actores"
       :key="actor.id"
@@ -15,8 +15,8 @@
       <v-list-item>
         <v-list-item-content>
           <p>Clave: {{ actor.clave }}</p>
-          <p>Capacidad: {{ actor.capacidad }}</p>
-          <p>Clave cine: {{ actor.claveCine }}</p>
+          <p>Descripcion: {{ actor.descripcion }}</p>
+          <p>Precio: {{ actor.precio }}</p>
         </v-list-item-content>
       </v-list-item>
       <v-app>
@@ -29,7 +29,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Agregar Sala</span>
+                <span class="text-h5">Agregar entrada</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -44,16 +44,16 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Capacidad"
+                          label="Descripcion"
                           required
-                          v-model="enteredData.capacidad"
+                          v-model="enteredData.descripcion"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Clave del Cine"
+                          label="Precio"
                           required
-                          v-model="enteredData.claveCine"
+                          v-model="enteredData.precio"
                         ></v-text-field>
                       </v-col>
                     </v-row>
@@ -76,7 +76,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Editar Sala a partir de clave</span>
+                <span class="text-h5">Editar entrada a partir de clave</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -92,19 +92,19 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Capacidad"
+                          label="Descripcion"
                           required
-                          v-model="enteredData.capacidad"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Clave del Cine"
-                          required
-                          v-model="enteredData.claveCine"
+                          v-model="enteredData.descripcion"
                         ></v-text-field>
                       </v-col>
                     </v-row>
+                    <v-col cols="12" sm="6" md="4">
+                      <v-text-field
+                        label="Precio"
+                        required
+                        v-model="enteredData.precio"
+                      ></v-text-field>
+                    </v-col>
                   </v-container>
                 </v-form>
               </v-card-text>
@@ -120,7 +120,6 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-
           <v-btn
             class="btn-action"
             fab
@@ -145,14 +144,14 @@ export default {
       show: "",
       enteredData: {
         clave: "",
-        capacidad: "",
-        claveCine: "",
+        descripcion: "",
+        precio: "",
       },
     };
   },
   created() {
     // Creado aquí es equivalente a inicializar los datos de la página de inicio
-    axios.get("http://localhost:8000/admsala.php").then((res) => {
+    axios.get("http://localhost:8000/tipoEntrada.php").then((res) => {
       this.actores = res.data; // Obtener datos
     });
   },
@@ -167,7 +166,7 @@ export default {
     onSubmit() {
       var formData = this.toFormData(this.enteredData);
       axios
-        .post("http://localhost:8000/salapost.php", formData)
+        .post("http://localhost:8000/tipoEntradaPost.php", formData)
         .then((response) => {
           if (response.data.error) {
             console.log("danger", response.data.message);
@@ -184,7 +183,7 @@ export default {
       this.enteredData.clave = clave;
       var formData = this.toFormData(this.enteredData);
       axios
-        .post("http://localhost:8000/salaUpdate.php", formData)
+        .post("http://localhost:8000/tipoEntradaUpdate.php", formData)
         .then((response) => {
           if (response.data.error) {
             console.log("danger", response.data.message);
@@ -201,7 +200,7 @@ export default {
       this.enteredData.clave = clave;
       var formData = this.toFormData(this.enteredData);
       axios
-        .post("http://localhost:8000/salaDelete.php", formData)
+        .post("http://localhost:8000/tipoEntradaDelete.php", formData)
         .then((response) => {
           if (response.data.error) {
             console.log("danger", response.data.message);

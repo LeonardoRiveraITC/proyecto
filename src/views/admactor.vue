@@ -30,7 +30,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Agregar funcion</span>
+                <span class="text-h5">Agregar Actor</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -45,49 +45,24 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha"
+                          label="Edad"
                           required
-                          v-model="enteredData.fecha"
-                          hint="Formato YYYY-MM-DD"
+                          v-model="enteredData.edad"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Duracion"
-                          v-model="enteredData.duracion"
+                          label="Nombre"
+                          v-model="enteredData.nombre"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          label="Hora inicio"
+                          label="Sexo"
                           required
-                          v-model="enteredData.horaInicio"
-                          hint="Formato HH-MM-SS"
+                          v-model="enteredData.sexo"
                         ></v-text-field>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-text-field
-                          v-model="enteredData.clavePelicula"
-                          label="Clave Pelicula"
-                          required
-                          hint="Formato HH-MM-SS"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="enteredData.claveProgramacion"
-                          label="clave Programacion"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="enteredData.claveSala"
-                          label="Clave Sala"
-                          required
-                          hint="Formato YYYY-MM-DD"
-                        ></v-text-field>
-                      </v-col>
+                        </v-col>
                     </v-row>
                   </v-container>
                 </v-form>
@@ -108,7 +83,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Editar funcion a partir de clave</span>
+                <span class="text-h5">Editar Actor a partir de clave</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -124,47 +99,22 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Fecha"
+                          label="Edad"
                           required
-                          v-model="enteredData.fecha"
-                          hint="Formato YYYY-MM-DD"
+                          v-model="enteredData.edad"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
-                          label="Duracion"
-                          v-model="enteredData.duracion"
+                          label="Nombre"
+                          v-model="enteredData.nombre"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          label="Hora inicio"
+                          label="Sexo"
                           required
-                          v-model="enteredData.horaInicio"
-                          hint="Formato HH-MM-SS"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-text-field
-                          v-model="enteredData.clavePelicula"
-                          label="Clave Pelicula"
-                          required
-                          hint="Formato HH-MM-SS"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="enteredData.claveProgramacion"
-                          label="clave Programacion"
-                          required
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6">
-                        <v-text-field
-                          v-model="enteredData.claveSala"
-                          label="Clave Sala"
-                          required
-                          hint="Formato YYYY-MM-DD"
+                          v-model="enteredData.sexo"
                         ></v-text-field>
                       </v-col>
                     </v-row>

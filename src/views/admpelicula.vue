@@ -15,7 +15,8 @@
       <v-list-item>
         <v-list-item-content>
           <p>Clave: {{ actor.clave }}</p>
-          <p>Primer funcion: {{ actor.nombre }}</p>
+          <p>Nombre: {{ actor.nombre }}</p>          
+          <p>Primer funcion: {{ actor.primeraFuncion }}</p>
           <p>Ultima funcion: {{ actor.fechaEstreno }}</p>
           <p>Productora: {{ actor.claveProductora }}</p>
           <p>Director: {{ actor.claveDirector }}</p>
@@ -53,13 +54,38 @@
                           v-model="enteredData.nombre"
                         ></v-text-field>
                       </v-col>
+
+                       <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Fecha de Estreno"
-                          v-model="enteredData.fechaEstreno"
-                          hint="Formato YYYY-MM-DD"
-                        ></v-text-field>
-                      </v-col>
+
+
+                        <v-menu
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaEstreno"
+                              label="Fecha de estreno"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaEstreno"
+                            @input="menu2 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                       <!-- calendar Fin-->
                       <v-col cols="12">
                         <v-text-field
                           label="Clave Productora"
@@ -108,7 +134,7 @@
             </template>
             <v-card>
               <v-card-title>
-                <span class="text-h5">Editar funcion a partir de clave</span>
+                <span class="text-h5">Editar pelicula a partir de clave</span>
               </v-card-title>
               <v-card-text>
                 <v-form>
@@ -129,13 +155,37 @@
                           v-model="enteredData.nombre"
                         ></v-text-field>
                       </v-col>
+                       <!-- calendar inicio  -->
                       <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          label="Fecha de Estreno"
-                          v-model="enteredData.fechaEstreno"
-                          hint="Formato YYYY-MM-DD"
-                        ></v-text-field>
-                      </v-col>
+
+
+                        <v-menu
+                          v-model="menu2"
+                          :close-on-content-click="false"
+                          :nudge-right="40"
+                          transition="scale-transition"
+                          offset-y
+                          min-width="auto"
+                        >
+                          <template v-slot:activator="{ on, attrs }">
+                            <v-text-field
+                              v-model="enteredData.fechaEstreno"
+                              label="Fecha de estreno"
+                              prepend-icon="mdi-calendar"
+                              readonly
+                              v-bind="attrs"
+                              v-on="on"
+                            ></v-text-field>
+                          </template>
+                          <v-date-picker
+                            v-model="enteredData.fechaEstreno"
+                            @input="menu2 = false"
+                          ></v-date-picker>
+                        </v-menu>
+
+
+                      </v-col> 
+                       <!-- calendar Fin-->
                       <v-col cols="12">
                         <v-text-field
                           label="Clave de Productora"
@@ -148,7 +198,7 @@
                           v-model="enteredData.claveDirector"
                           label="Clave Director"
                           required
-                          hint="Formato HH-MM-SS"
+
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12" sm="6">
@@ -163,7 +213,7 @@
                           v-model="enteredData.claveGenero"
                           label="Clave Genero"
                           required
-                          hint="Formato YYYY-MM-DD"
+
                         ></v-text-field>
                       </v-col>
                     </v-row>

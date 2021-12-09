@@ -1,24 +1,25 @@
 <?php
-header ("Access-Control-Allow-Origin: *");
-$conn = new mysqli('localhost', 'root', '', 'cines');
-if($conn->connect_error) {
-  die('Could not connect to the database');
+$servername = "localhost";
+$database = "cines";
+$username = "root";
+$password = "";
+// Create connection
+header ("Access-Control-Allow-Origin: *"); 
+$conn = mysqli_connect($servername, $username, $password, $database);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
-$response['error'] = false;
-$clave= $_POST['clave'];
-$descripcion= $_POST['descripcion'];
-$precio= $_POST['precio'];
 
-$insertQuery = $conn->query("INSERT INTO funcion
- VALUES ('$clave', '$descripcion', '$precio')");
-if ($insertQuery) {
-  $response['message'] = 'New record inserted sucessfully';
-} else {
-  $response['error'] = true;
-  $response['message'] = $conn->error;
+$sql="select * from tipoEntrada";
+$res=$conn->query($sql);
+$arr=array();
+while ($row=$res->fetch_assoc()) {
+	$arr[]=$row;
 }
-$conn->close();
-header('content-type: application/json');
-echo json_encode($response);
-die();
+$res->free();
+
+
+mysqli_close($conn); // cerrar conexion
+echo (json_encode ($arr)); // return
 ?>
